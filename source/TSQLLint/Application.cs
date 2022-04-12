@@ -59,11 +59,6 @@ namespace TSQLLint
                 fileProcessor.ProcessList(commandLineOptions.LintPath);
             }
 
-            if (fileProcessor.FileCount > 0)
-            {
-                reporter.ReportResults(timer.Stop(), fileProcessor.FileCount);
-            }
-
             if (!response.Success)
             {
                 Environment.ExitCode = 1;

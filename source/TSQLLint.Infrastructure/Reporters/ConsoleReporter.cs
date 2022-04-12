@@ -51,7 +51,7 @@ namespace TSQLLint.Infrastructure.Reporters
 
         public void ReportViolation(string fileName, string line, string column, string severity, string ruleName, string violationText)
         {
-            Report($"{fileName}({line},{column}): {severity} {ruleName} : {violationText}.");
+            Report($"{fileName}|{line}|{column}|{severity}|{ruleName}|{violationText.Replace("\0", "").Replace("\t", "").Replace("\r\n", " ").Replace("\n", " ")}.");
         }
     }
 }

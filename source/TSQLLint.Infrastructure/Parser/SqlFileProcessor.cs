@@ -72,33 +72,23 @@ namespace TSQLLint.Infrastructure.Parser
         private void processPath(string path)
         {
             // remove quotes from filePaths
-            path = path.Replace("\"", string.Empty);
+            var filePath = path.Replace("\"", string.Empty).Trim();
 
-            var filePathList = path.Split(',');
-            for (var index = 0; index < filePathList.Length; index++)
+            if (!fileSystem.File.Exists(filePath))
             {
-                // remove leading and trailing whitespace
-                filePathList[index] = filePathList[index].Trim();
-            }
-
-            Parallel.ForEach(filePathList, (filePath) =>
-            {
-                if (!fileSystem.File.Exists(filePath))
+                if (fileSystem.Directory.Exists(filePath))
                 {
-                    if (fileSystem.Directory.Exists(filePath))
-                    {
-                        ProcessDirectory(filePath);
-                    }
-                    else
-                    {
-                        ProcessWildCard(filePath);
-                    }
+                    ProcessDirectory(filePath);
                 }
                 else
                 {
-                    ProcessFile(filePath);
+                    ProcessWildCard(filePath);
                 }
-            });
+            }
+            else
+            {
+                ProcessFile(filePath);
+            }
         }
 
         private void ProcessFile(string filePath)
