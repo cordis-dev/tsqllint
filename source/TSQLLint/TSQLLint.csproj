@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <StartupObject>TSQLLint.Program</StartupObject>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
 
     <ToolCommandName>tsqllint</ToolCommandName>
