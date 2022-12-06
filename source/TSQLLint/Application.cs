@@ -96,12 +96,6 @@ namespace TSQLLint
                     }
                 }
                 while (response.ShouldFix && violitions.Count > 0 && !AreEqual(violitions, previousViolations) && passCount < maxPasses);
-
-                if (fileProcessor.FileCount > 0)
-                {
-                    reporter.FixedCount = firstViolitionCount - violitions?.Count;
-                    reporter.ReportResults(timer.Stop(), fileProcessor.FileCount);
-                }
             }
 
             if (!response.Success)
