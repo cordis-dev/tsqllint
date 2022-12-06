@@ -5,7 +5,7 @@ jobs:
 
   build:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
 
   build and notify:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
       - checkout
       - run:
@@ -42,7 +42,7 @@ jobs:
 
   package and push to nuget:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
       - checkout
       - run:
@@ -83,13 +83,13 @@ workflows:
               only:
                 - /pull\/\d+/
 
-  build branches:
-    jobs:
-      - build and notify:
-          filters:
-            branches:
-              only:
-                - /.*/
+#  build branches:
+#    jobs:
+#      - build and notify:
+#          filters:
+#            branches:
+#              only:
+#                - /.*/
 
   build and publish tags:
     jobs:
